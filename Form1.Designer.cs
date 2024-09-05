@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.timerLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.homeToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.categoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,10 +39,10 @@
             this.bookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timerLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.nxbToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -56,11 +57,18 @@
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // timerLabel
+            // 
+            this.timerLabel.Name = "timerLabel";
+            this.timerLabel.Size = new System.Drawing.Size(10, 17);
+            this.timerLabel.Text = " ";
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStrip,
             this.categoryToolStripMenuItem,
+            this.nxbToolStrip,
             this.authorToolStripMenuItem,
             this.bookToolStripMenuItem,
             this.readerToolStripMenuItem,
@@ -115,13 +123,6 @@
             this.borrowToolStripMenuItem.Text = "Mượn - Trả";
             this.borrowToolStripMenuItem.Click += new System.EventHandler(this.borrowToolStripMenuItem_Click);
             // 
-            // profileToolStripMenuItem
-            // 
-            this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            this.profileToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
-            this.profileToolStripMenuItem.Text = "Thông Tin Cá Nhân";
-            this.profileToolStripMenuItem.Click += new System.EventHandler(this.profileToolStripMenuItem_Click);
-            // 
             // searchingToolStripMenuItem
             // 
             this.searchingToolStripMenuItem.Name = "searchingToolStripMenuItem";
@@ -129,16 +130,24 @@
             this.searchingToolStripMenuItem.Text = "Tìm Kiếm";
             this.searchingToolStripMenuItem.Click += new System.EventHandler(this.searchingToolStripMenuItem_Click);
             // 
-            // timerLabel
+            // profileToolStripMenuItem
             // 
-            this.timerLabel.Name = "timerLabel";
-            this.timerLabel.Size = new System.Drawing.Size(10, 17);
-            this.timerLabel.Text = " ";
+            this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
+            this.profileToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
+            this.profileToolStripMenuItem.Text = "Thông Tin Cá Nhân";
+            this.profileToolStripMenuItem.Click += new System.EventHandler(this.profileToolStripMenuItem_Click);
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // nxbToolStrip
+            // 
+            this.nxbToolStrip.Name = "nxbToolStrip";
+            this.nxbToolStrip.Size = new System.Drawing.Size(137, 20);
+            this.nxbToolStrip.Text = "Quản Lý Nhà Xuất Bản";
+            this.nxbToolStrip.Click += new System.EventHandler(this.nxbToolStrip_Click);
             // 
             // Form1
             // 
@@ -177,6 +186,7 @@
         private System.Windows.Forms.ToolStripMenuItem searchingToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel timerLabel;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem nxbToolStrip;
     }
 }
 

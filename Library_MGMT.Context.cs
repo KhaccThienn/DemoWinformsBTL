@@ -30,6 +30,7 @@ namespace DemoWinformsBTL
         public virtual DbSet<Card> Cards { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Loan> Loans { get; set; }
+        public virtual DbSet<Publisher> Publishers { get; set; }
         public virtual DbSet<Reader> Readers { get; set; }
     }
 }

@@ -12,29 +12,18 @@ namespace DemoWinformsBTL
     using System;
     using System.Collections.Generic;
     
-    public partial class Book
+    public partial class Publisher
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Book()
+        public Publisher()
         {
-            this.Loans = new HashSet<Loan>();
+            this.Books = new HashSet<Book>();
         }
     
-        public int BookID { get; set; }
-        public string Title { get; set; }
-        public Nullable<int> AuthorID { get; set; }
-        public Nullable<int> CategoryID { get; set; }
-        public string ISBN { get; set; }
-        public Nullable<int> Edition { get; set; }
-        public Nullable<int> Year { get; set; }
-        public string Genre { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<int> PublisherId { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
     
-        public virtual Author Author { get; set; }
-        public virtual Category Category { get; set; }
-        public virtual Publisher Publisher { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Loan> Loans { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

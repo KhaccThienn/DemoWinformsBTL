@@ -27,6 +27,7 @@
           <Property Name="Year" Type="int" />
           <Property Name="Genre" Type="nvarchar" MaxLength="100" />
           <Property Name="Quantity" Type="int" />
+          <Property Name="PublisherId" Type="int" />
         </EntityType>
         <EntityType Name="Cards">
           <Key>
@@ -55,6 +56,13 @@
           <Property Name="LoanDate" Type="date" Nullable="false" />
           <Property Name="DueDate" Type="date" Nullable="false" />
           <Property Name="ReturnDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Readers">
           <Key>
@@ -89,6 +97,18 @@
             </Principal>
             <Dependent Role="Books">
               <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__Publisher__5CD6CB2B">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="PublisherId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -134,6 +154,7 @@
           <EntitySet Name="Cards" EntityType="Self.Cards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Loans" EntityType="Self.Loans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Readers" EntityType="Self.Readers" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Books__AuthorID__4D94879B" Association="Self.FK__Books__AuthorID__4D94879B">
             <End Role="Authors" EntitySet="Authors" />
@@ -141,6 +162,10 @@
           </AssociationSet>
           <AssociationSet Name="FK__Books__CategoryI__4E88ABD4" Association="Self.FK__Books__CategoryI__4E88ABD4">
             <End Role="Categories" EntitySet="Categories" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__Publisher__5CD6CB2B" Association="Self.FK__Books__Publisher__5CD6CB2B">
+            <End Role="Publisher" EntitySet="Publisher" />
             <End Role="Books" EntitySet="Books" />
           </AssociationSet>
           <AssociationSet Name="FK__Cards__ReaderID__5812160E" Association="Self.FK__Cards__ReaderID__5812160E">
@@ -184,8 +209,10 @@
           <Property Name="Year" Type="Int32" />
           <Property Name="Genre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Int32" />
+          <Property Name="PublisherId" Type="Int32" />
           <NavigationProperty Name="Author" Relationship="Self.FK__Books__AuthorID__4D94879B" FromRole="Books" ToRole="Authors" />
           <NavigationProperty Name="Category" Relationship="Self.FK__Books__CategoryI__4E88ABD4" FromRole="Books" ToRole="Categories" />
+          <NavigationProperty Name="Publisher" Relationship="Self.FK__Books__Publisher__5CD6CB2B" FromRole="Books" ToRole="Publisher" />
           <NavigationProperty Name="Loans" Relationship="Self.FK__Loans__BookID__5441852A" FromRole="Books" ToRole="Loans" />
         </EntityType>
         <EntityType Name="Card">
@@ -219,6 +246,14 @@
           <Property Name="ReturnDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Book" Relationship="Self.FK__Loans__BookID__5441852A" FromRole="Loans" ToRole="Books" />
           <NavigationProperty Name="Reader" Relationship="Self.FK__Loans__ReaderID__5535A963" FromRole="Loans" ToRole="Readers" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="Self.FK__Books__Publisher__5CD6CB2B" FromRole="Publisher" ToRole="Books" />
         </EntityType>
         <EntityType Name="Reader">
           <Key>
@@ -255,6 +290,18 @@
             </Principal>
             <Dependent Role="Books">
               <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__Publisher__5CD6CB2B">
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publisher">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="PublisherId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -300,6 +347,7 @@
           <EntitySet Name="Cards" EntityType="Self.Card" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Loans" EntityType="Self.Loan" />
+          <EntitySet Name="Publishers" EntityType="Self.Publisher" />
           <EntitySet Name="Readers" EntityType="Self.Reader" />
           <AssociationSet Name="FK__Books__AuthorID__4D94879B" Association="Self.FK__Books__AuthorID__4D94879B">
             <End Role="Authors" EntitySet="Authors" />
@@ -307,6 +355,10 @@
           </AssociationSet>
           <AssociationSet Name="FK__Books__CategoryI__4E88ABD4" Association="Self.FK__Books__CategoryI__4E88ABD4">
             <End Role="Categories" EntitySet="Categories" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__Publisher__5CD6CB2B" Association="Self.FK__Books__Publisher__5CD6CB2B">
+            <End Role="Publisher" EntitySet="Publishers" />
             <End Role="Books" EntitySet="Books" />
           </AssociationSet>
           <AssociationSet Name="FK__Loans__BookID__5441852A" Association="Self.FK__Loans__BookID__5441852A">
@@ -350,6 +402,7 @@
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="Genre" ColumnName="Genre" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -381,6 +434,14 @@
                 <ScalarProperty Name="LoanDate" ColumnName="LoanDate" />
                 <ScalarProperty Name="DueDate" ColumnName="DueDate" />
                 <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Publishers">
+            <EntityTypeMapping TypeName="Library_MgmtModel.Publisher">
+              <MappingFragment StoreEntitySet="Publisher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

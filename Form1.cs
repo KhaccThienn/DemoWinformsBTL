@@ -37,19 +37,34 @@ namespace DemoWinformsBTL
 
         private void categoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCategory frmCategory = new FrmCategory();
-            frmCategory.MdiParent = this;
-            frmCategory.ClientSize = new System.Drawing.Size(2000, 800);
-            frmCategory.Dock = DockStyle.Fill;
-            if (!frmCategory.IsOpened)
+            FrmCategory frm = new FrmCategory();
+            frm.MdiParent = this;
+            frm.ClientSize = new System.Drawing.Size(2000, 800);
+            frm.Dock = DockStyle.Fill;
+            frm.FormBorderStyle = FormBorderStyle.None;
+
+            if (!frm.IsOpened)
             {
-                frmCategory.Show();
+                frm.Show();
             }
         }
 
         private void authorToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void nxbToolStrip_Click(object sender, EventArgs e)
+        {
+            FrmPublisher frm = new FrmPublisher();
+            frm.MdiParent = this;
+            frm.ClientSize = new System.Drawing.Size(2000, 800);
+            frm.Dock = DockStyle.Fill;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            if (!frm.IsOpened)
+            {
+                frm.Show();
+            }
         }
 
         private void bookToolStripMenuItem_Click(object sender, EventArgs e)
@@ -82,5 +97,7 @@ namespace DemoWinformsBTL
             timerLabel.Text = $"Bây Giờ Là {DateTime.UtcNow.Hour}:{DateTime.UtcNow.Minute}:{DateTime.UtcNow.Second}," +
                 $" ngày {DateTime.UtcNow.Day}/{DateTime.UtcNow.Month}/{DateTime.UtcNow.Year}"; 
         }
+
+        
     }
 }

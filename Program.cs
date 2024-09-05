@@ -17,7 +17,7 @@ namespace DemoWinformsBTL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmAuthor());
+            Application.Run(new Form1());
         }
     }
 }
